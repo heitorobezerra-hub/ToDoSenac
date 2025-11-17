@@ -1,0 +1,1 @@
+print('Bença da estrelinha!')
