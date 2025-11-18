@@ -1,5 +1,5 @@
 from django.db import models
-from django.db import settings
+from django.conf import settings
 
 class Task(models.Model):
     class Priority(models.TextChoices):
@@ -30,6 +30,6 @@ class Task(models.Model):
     
     class Meta:
         ordering = ["concluida", "data_limite", "-prioridade", "-criado_em"]
-        def __str__(self) -> str:
-            return self.titulo
+    def __str__(self) -> str:
+        return self.titulo
         
