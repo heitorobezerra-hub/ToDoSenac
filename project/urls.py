@@ -21,5 +21,5 @@ from main.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('',HomeView.as_view(),name='home')
+    path('home',HomeView.as_view(),name='home')
 ]
