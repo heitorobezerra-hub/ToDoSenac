@@ -9,9 +9,33 @@
     
 
 
-{% for task in tarefas %}
-        {{task.titulo}}
-        {{task.descricao}}
-{% endfor %}
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">titulo</th>
+      <th scope="col">descricao</th>
+      <th scope="col">prioridade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tarefas %}
+    <tr>
+
+        <td>{{task.id}}</td>
+        <td>{{task.titulo}}</td>
+        <td>{{task.descricao}}</td>
+        <td>{{task.prioridade}}</td>
+
+    </tr>
+    {% endfor %}
+
+
+  </tbody>
+</table>
+
+
 
 {% endblock %}
