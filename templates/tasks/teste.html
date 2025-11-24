@@ -1,0 +1,41 @@
+{%  extends "base.html"  %}
+
+{% block title %}Tarefas Concluidas{% endblock %}
+
+{%block content %}
+
+    <h1> Lista de Tarefas </h1>
+
+    
+<table class="table">
+  <thead class="table-light">
+    <tr>
+        <th scope = "col">id</th>
+        <th scope = "col">titulo</th>
+        <th scope = "col">descricao</th>
+        <th scope = "col">concluida</th>
+        <th scope = "col">prioridade</th>
+    </tr>
+    <tr>
+    {% for task in tarefas %} <!-- para rodar comandos em html, use {%} e <comado> -->
+        <td>{{task.id}}</td>
+        <td>{{task.titulo}}</td>
+        <td>{{task.descricao}}</td>
+        <td>{{task.concluida}}</td>
+        <td>{{task.prioridade}}</td>
+    
+    </tr>
+    {% endfor %}
+  </thead>
+  <tbody>
+    Tarefinhas
+  </tbody>
+</table>
+
+
+
+
+
+
+
+{% endblock %}
