@@ -20,7 +20,7 @@ def task_concluido(request):
         "tarefas":tarefas,
         "título_pagina": "Minhas tarefas concluidas",
     }
-    return render(request, 'tasks/teste.html', context)
+    return render(request, 'tasks/conclusao.html', context)
 
 def task_pendente(request):
     a = 4
@@ -32,4 +32,4 @@ def task_pendente(request):
         "tarefas":tarefas,
         "título_pagina": "Minhas tarefas concluidas",
     }
-    return render(request, 'tasks/teste2.html', context)
+    return render(request, 'tasks/pendencias.html', context)

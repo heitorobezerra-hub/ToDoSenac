@@ -6,14 +6,17 @@
     <title>Document</title> <!-- titulo da página -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="{% url 'home'%}">Inicio</a> | <a href="{% url 'task_list' %}">Minhas Tarefas </a> | <a href="{% url 'task_concluido' %}">Tarefas Concluidas </a> | <a href="{% url 'task_pendente' %}"> Tarefas Pendentes </a>
-        </nav>
-        <hr>
-    </header>
+<header>
+    <nav class="d-flex justify-content-center p-3" style="background-color:#1b263b;">
+
+        <a href="{% url 'home' %}" class="btn btn-outline-light mx-2">Início</a>
+        <a href="{% url 'task_list' %}" class="btn btn-outline-info mx-2">Minhas Tarefas</a>
+        <a href="{% url 'task_concluido' %}" class="btn btn-outline-success mx-2">Tarefas Concluídas</a>
+        <a href="{% url 'task_pendente' %}" class="btn btn-outline-warning mx-2">Tarefas Pendentes</a>
+
+    </nav>
+    <hr style="border-color:#415a77;">
+</header>
 
     <main>
         {% block content %}
