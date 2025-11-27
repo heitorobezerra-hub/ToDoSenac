@@ -76,8 +76,13 @@
                             <td class="fw-bold">{{ task.titulo }}</td>
                             <td>{{ task.descricao }}</td>
 
+                            <!-- CAMPO CONCLUÍDA CORRIGIDO -->
                             <td>
-                                <span class="badge bg-success">Sim</span>
+                                {% if task.concluida %}
+                                    <span class="badge bg-success">Sim</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Não</span>
+                                {% endif %}
                             </td>
 
                             <td>
