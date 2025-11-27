@@ -3,28 +3,104 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Minha Página</title>
+    <title>Página Inicial</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0d1b2a;
+            color: #e0e6ed;
+            display: flex;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 240px;
+            background-color: #1b263b;
+            height: 100vh;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+        }
+
+        .sidebar h2 {
+            color: #e0e6ed;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 10px;
+            color: #e0e6ed;
+            text-decoration: none;
+            background-color: #415a77;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #778da9;
+        }
+
+        /* ------ MAIN ------ */
+        .content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #e0e6ed;
+        }
+
+        .imgs-container {
+            margin-top: 20px;
+        }
+
+        .imgs-container img {
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <h1>Olá usuário, como vai?</h1>
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        <h2>📌 Menu</h2>
 
-    <img src=" https://th.bing.com/th/id/OIP.41hZ0VAwjv3kyHib9L3KYwHaFb?w=245&h=180&c=7&r=0&o=7&pid=1.7&rm=3 " alt="Minha Foto" width="700">
-    <img src=" https://tse3.mm.bing.net/th/id/OIP.ArXAyAPrPMsUD2zR4HicMgHaHT?rs=1&pid=ImgDetMain&o=7&rm=3 " alt="Minha Foto" width="400">
-    <img src=" https://th.bing.com/th/id/OIP.2WR3fw_Ceq604YPag4kplwHaHa?w=216&h=216&c=7&r=0&o=7&pid=1.7&rm=3 " alt="Minha Foto" width="700">
-    <header>
-        <nav>
-            <a href="{% url 'home'%}">Inicio</a> | <a href="{% url 'task_list' %}">Minhas Tarefas </a> | <a href="{% url 'task_concluido' %}">Tarefas Concluidas </a> | <a href="{% url 'task_pendente' %}"> Tarefas Pendentes </a>
-        </nav>
-        <hr>
-    </header>
+        <a href="{% url 'home'%}">🏠 Início</a>
+        <a href="{% url 'task_list' %}">📝 Minhas Tarefas</a>
+        <a href="{% url 'task_concluido' %}">✅ Tarefas Concluídas</a>
+        <a href="{% url 'task_pendente' %}">⏳ Tarefas Pendentes</a>
+    </div>
 
-    <main>
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <div class="content">
+        <h1>Olá usuário, como vai?</h1>
+
+        <div class="imgs-container">
+            <img src="https://th.bing.com/th/id/OIP.41hZ0VAwjv3kyHib9L3KYwHaFb?w=245&h=180&c=7&r=0&o=7&pid=1.7&rm=3" width="500">
+
+            <img src="https://tse3.mm.bing.net/th/id/OIP.ArXAyAPrPMsUD2zR4HicMgHaHT?rs=1&pid=ImgDetMain&o=7&rm=3" width="350">
+
+            <img src="https://th.bing.com/th/id/OIP.2WR3fw_Ceq604YPag4kplwHaHa?w=216&h=216&c=7&r=0&o=7&pid=1.7&rm=3" width="450">
+        </div>
+
         {% block content %}
+        {% endblock %}
+    </div>
 
-        <!-- aqui é onde a magica acontece-->
-
-         {% endblock %}
-    </main>
 </body>
 </html>

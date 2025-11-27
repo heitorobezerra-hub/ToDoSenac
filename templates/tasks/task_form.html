@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% block title %}Criar Tarefa{% endblock %}
+
+{% block content %}
+
+<style>
+/* ===== Ajustes gerais ===== */
+body {
+    background-color: #0d1b2a;
+    display: flex;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #e0e6ed;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #1b263b;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-right: 2px solid #415a77;
+}
+
+.sidebar a {
+    color: #e0e6ed;
+    text-decoration: none;
+    background-color: #415a77;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background-color: #778da9;
+    color: white;
+}
+
+/* ===== Topbar ===== */
+.topbar {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    height: 70px;
+    background-color: #1b263b;
+    border-bottom: 2px solid #415a77;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+.btn-new-task {
+    background-color: #52b788;
+    color: #0d1b2a;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-new-task:hover {
+    background-color: #40916c;
+    color: white;
+}
+
+/* ===== Content ===== */
+.content-area {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== Form Card ===== */
+.form-card {
+    width: 60%;
+    background-color: #1b263b;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #415a77;
+    box-shadow: 0 0 10px #00000044;
+}
+
+/* ===== Inputs ===== */
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+input, textarea, select {
+    width: 100%;
+    background-color: #0d1b2a;
+    border: 1px solid #415a77;
+    padding: 10px;
+    color: #e0e6ed;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+button {
+    margin-top: 20px;
+    background-color: #52b788;
+    padding: 12px 25px;
+    color: #0d1b2a;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #40916c;
+    color: white;
+}
+
+/* ===== Imagens ===== */
+.side-image {
+    width: 200px;
+    border-radius: 12px;
+    opacity: 0.9;
+}
+
+.side-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    margin-right: 40px;
+}
+</style>
+
+<!-- ===== Sidebar ===== -->
+<div class="sidebar">
+    <a href="/home">🏠 Início</a>
+    <a href="/tasks">📝 Minhas Tarefas</a>
+    <a href="/concluidas">✅ Concluídas</a>
+    <a href="/pendente">⏳ Pendentes</a>
+</div>
+
+<!-- ===== Topbar ===== -->
+<div class="topbar">
+    <a href="/create_task"><button class="btn-new-task">➕ Nova Task</button></a>
+</div>
+
+<!-- ===== Conteúdo Principal ===== -->
+<div class="content-area">
+
+    <!-- Imagens esquerda -->
+    <div class="side-container">
+        <img class="side-image" src="https://img.freepik.com/vetores-premium/desenhos-animados-adoravel-gatinho-gato-bonito-doodle-cartao-de-citacao-de-motivacao_40564-442.jpg">
+        <img class="side-image" src="https://img.freepik.com/vetores-premium/desenho-de-gatinho-fofo-no-estilo-kawaii-com-frase-de-motivacao_405506-360.jpg">
+    </div>
+
+    <!-- Formulário -->
+    <div class="form-card">
+        <h2 class="text-center mb-4">📌 Criar Nova Tarefa</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label>Título:</label>
+            <input type="text" name="titulo" placeholder="Digite o nome da tarefa">
+
+            <label>Descrição:</label>
+            <textarea name="descricao" rows="4"></textarea>
+
+            <label>Prioridade:</label>
+            <select name="prioridade">
+                {% for value, label in opcoes_prioridade %}
+                    <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Data Limite:</label>
+            <input type="date" name="data_limite">
+
+            <label>
+                <input type="checkbox" name="concluida">
+                Concluída
+            </label>
+
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <!-- Imagens direita -->
+    <div class="side-container">
+        <img class="side-image" src="https://tse2.mm.bing.net/th/id/OIP.J5iwIYpgvASLTYIlcQnH9wHaDt">
+        <img class="side-image" src="https://tse3.mm.bing.net/th/id/OIP.W1KQE_K1g7rVvGmDL4YUJQHaFL">
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView
 from main.models import Task #Importar tabela que vamos usar
 class HomeView(TemplateView):
@@ -33,3 +33,25 @@ def task_pendente(request):
         "título_pagina": "Minhas tarefas concluidas",
     }
     return render(request, 'tasks/pendencias.html', context)
+
+def task_create(request):
+    if request.method == 'POST':
+        titulo = request.POST.get('titulo', "").strip()
+        descricao = request.POST.get('descricao', "").strip()
+        concluida = request.POST.get('concluida', "") == 'on'
+        prioridade = request.POST.get('prioridade', "").strip()
+        data_limite = request.POST.get('data_limite', "").strip()
+        Task.objects.create(
+            titulo=titulo,
+            descricao=descricao,
+            concluida=concluida,
+            prioridade=prioridade,
+            data_limite=data_limite
+    )
+        
+
+    context = {
+        'opcoes_prioridade': Task.Priority.choices,
+    }
+    return render(request, 'tasks/task_form.html', context)
+

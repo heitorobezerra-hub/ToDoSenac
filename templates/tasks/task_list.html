@@ -6,6 +6,77 @@
 <style>
     body {
         background-color: #0d1b2a;
+        display: flex;
+    }
+
+    /* ===== Barra lateral ===== */
+    .sidebar {
+        width: 240px;
+        height: 100vh;
+        background-color: #1b263b;
+        padding: 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-right: 2px solid #415a77;
+    }
+
+    .sidebar a {
+        color: #e0e6ed;
+        text-decoration: none;
+        background-color: #415a77;
+        padding: 12px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+        background-color: #778da9;
+        color: white;
+    }
+
+    /* ===== Barra superior ===== */
+    .topbar {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+        height: 70px;
+        background-color: #1b263b;
+        border-bottom: 2px solid #415a77;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 30px;
+    }
+
+    .btn-new-task {
+        background-color: #52b788;
+        color: #0d1b2a;
+        padding: 10px 18px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        border: none;
+        transition: 0.2s;
+    }
+
+    .btn-new-task:hover {
+        background-color: #40916c;
+        color: white;
+    }
+
+    /* ===== Conteúdo ===== */
+    .content-area {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 👍 Centraliza tudo */
     }
 
     .card-dark {
@@ -29,9 +100,10 @@
         cursor: pointer;
     }
 
+    /* ===== Imagens laterais ===== */
     .side-image {
-        width: 130px;
-        opacity: 0.85;
+        width: 180px;
+        opacity: 0.9;
         border-radius: 12px;
     }
 
@@ -39,22 +111,43 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: center;
     }
 </style>
 
-<div class="container mt-4">
+
+<!-- ===== Barra Lateral ===== -->
+<div class="sidebar">
+    <a href="/home">🏠 Início</a>
+    <a href="/tasks">📝 Minhas Tarefas</a>
+    <a href="/concluidas">✅ Concluídas</a>
+    <a href="/pendente">⏳ Pendentes</a>
+</div>
+
+<!-- ===== Barra Superior ===== -->
+<div class="topbar">
+    <a href="/create_task">
+        <button class="btn-new-task">➕ Criar Nova Task</button>
+    </a>
+</div>
+
+
+<!-- ===== Conteúdo Principal ===== -->
+<div class="content-area">
 
     <h1 class="text-center text-light mb-4">✨ Tarefas a fazer :D ✨</h1>
 
-    <div class="row">
+    <div class="row justify-content-center" style="width: 100%;">
 
+        <!-- Imagens esquerda -->
         <div class="col-2 side-container">
-            <img class="side-image" src="https://img.freepik.com/vetores-premium/desenhos-animados-adoravel-gatinho-gato-bonito-doodle-cartao-de-citacao-de-motivacao_40564-442.jpg?w=1480" alt="motivacional">
-            <img class="side-image" src="https://img.freepik.com/vetores-premium/desenho-de-gatinho-fofo-no-estilo-kawaii-com-frase-de-motivacao_405506-360.jpg?w=2000" alt="motivacional">
+            <img class="side-image" src="https://img.freepik.com/vetores-premium/desenhos-animados-adoravel-gatinho-gato-bonito-doodle-cartao-de-citacao-de-motivacao_40564-442.jpg?w=1480">
+            <img class="side-image" src="https://img.freepik.com/vetores-premium/desenho-de-gatinho-fofo-no-estilo-kawaii-com-frase-de-motivacao_405506-360.jpg?w=2000">
         </div>
 
-        <div class="col-8">
-            <div class="card card-dark shadow-lg p-3">
+        <!-- Tabela CENTRALIZADA -->
+        <div class="col-8 d-flex justify-content-center">
+            <div class="card card-dark shadow-lg p-3" style="width: 90%; margin: auto;">
 
                 <table class="table table-dark-blue table-hover align-middle">
                     <thead>
@@ -64,6 +157,7 @@
                             <th>Descrição</th>
                             <th>Concluída</th>
                             <th>Prioridade</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
 
@@ -91,10 +185,13 @@
                                     <span class="badge bg-secondary">Baixa</span>
                                 {% endif %}
                             </td>
+
+                            <!-- COLUNA AÇÕES (botão removido, mantendo estrutura) -->
+                            <td>—</td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="5" class="text-center text-muted py-4">
+                            <td colspan="6" class="text-center text-muted py-4">
                                 Nenhuma tarefa encontrada 😴
                             </td>
                         </tr>
@@ -105,9 +202,10 @@
             </div>
         </div>
 
+        <!-- Imagens direita -->
         <div class="col-2 side-container">
-            <img class="side-image" src="https://tse2.mm.bing.net/th/id/OIP.J5iwIYpgvASLTYIlcQnH9wHaDt?rs=1&pid=ImgDetMain&o=7&rm=3" alt="motivacional">
-            <img class="side-image" src="https://tse3.mm.bing.net/th/id/OIP.W1KQE_K1g7rVvGmDL4YUJQHaFL?rs=1&pid=ImgDetMain&o=7&rm=3" alt="motivacional">
+            <img class="side-image" src="https://tse2.mm.bing.net/th/id/OIP.J5iwIYpgvASLTYIlcQnH9wHaDt?rs=1&pid=ImgDetMain&o=7&rm=3">
+            <img class="side-image" src="https://tse3.mm.bing.net/th/id/OIP.W1KQE_K1g7rVvGmDL4YUJQHaFL?rs=1&pid=ImgDetMain&o=7&rm=3">
         </div>
 
     </div>
