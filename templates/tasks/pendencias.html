@@ -9,7 +9,6 @@
         display: flex;
     }
 
-    /* ===== Barra lateral ===== */
     .sidebar {
         width: 240px;
         height: 100vh;
@@ -40,7 +39,6 @@
         color: white;
     }
 
-    /* ===== Barra superior ===== */
     .topbar {
         margin-left: 260px;
         width: calc(100% - 260px);
@@ -69,7 +67,6 @@
         color: white;
     }
 
-    /* ===== Conteúdo ===== */
     .content-area {
         margin-left: 260px;
         width: calc(100% - 260px);
@@ -111,7 +108,6 @@
     }
 </style>
 
-<!-- ===== Barra Lateral ===== -->
 <div class="sidebar">
     <a href="/home">🏠 Início</a>
     <a href="/tasks">📝 Minhas Tarefas</a>
@@ -119,28 +115,23 @@
     <a href="/pendente">⏳ Pendentes</a>
 </div>
 
-<!-- ===== Barra Superior ===== -->
 <div class="topbar">
     <a href="/create_task">
         <button class="btn-new-task">➕ Criar Nova Task</button>
     </a>
 </div>
 
-
-<!-- ===== Conteúdo Principal ===== -->
 <div class="content-area">
 
     <h1 class="text-center text-light mb-4">🚨 Tarefas Pendentes 🚨</h1>
 
     <div class="row justify-content-center">
 
-        <!-- Imagens esquerda -->
         <div class="col-2 side-container">
             <img class="side-image" src="https://th.bing.com/th/id/OIP.f9wQCqu6oa1RDI9Im7DqgwAAAA?w=159&h=180&c=7&r=0&o=7&pid=1.7&rm=3">
             <img class="side-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAR238V_GFxBfQE4tu6fd425STFZGq4YdS4A&s">
         </div>
 
-        <!-- Tabela -->
         <div class="col-8">
             <div class="card card-dark shadow-lg p-3">
 
@@ -177,7 +168,15 @@
                                 {% endif %}
                             </td>
 
-                            <td>—</td>
+                            <td>
+                                <a href="{% url 'update_task' task.id %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+
+                                <a href="{% url 'delete_task' task.id %}"
+                                   class="btn btn-sm btn-danger"
+                                   style="margin-left: 5px;">
+                                    🗑️ Excluir
+                                </a>
+                            </td>
                         </tr>
                         {% empty %}
                         <tr>
@@ -192,7 +191,6 @@
             </div>
         </div>
 
-        <!-- Imagens direita -->
         <div class="col-2 side-container">
             <img class="side-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsmqcQ6zx0hXRo-df5iDdSisJqhWH5Er-2Ew&s">
             <img class="side-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJifmeI9mRfWDao2NwBZAXihozP8fx4OJ5Xw&s">

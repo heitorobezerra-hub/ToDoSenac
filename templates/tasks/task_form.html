@@ -176,23 +176,43 @@ button:hover {
             {% csrf_token %}
 
             <label>Título:</label>
-            <input type="text" name="titulo" placeholder="Digite o nome da tarefa">
+            <input 
+                type="text" 
+                name="titulo" 
+                placeholder="Digite o nome da tarefa"
+                {% if task %} value="{{ task.titulo }}" {% endif %}
+            >
 
             <label>Descrição:</label>
-            <textarea name="descricao" rows="4"></textarea>
+            <textarea name="descricao" rows="4">{% if task %}{{ task.descricao }}{% endif %}</textarea>
 
             <label>Prioridade:</label>
             <select name="prioridade">
                 {% for value, label in opcoes_prioridade %}
-                    <option value="{{ value }}">{{ label }}</option>
+                    <option 
+                        value="{{ value }}"
+                        {% if task and task.prioridade == value %}selected{% endif %}
+                    >
+                        {{ label }}
+                    </option>
                 {% endfor %}
             </select>
 
             <label>Data Limite:</label>
-            <input type="date" name="data_limite">
+            <input 
+                type="date" 
+                name="data_limite"
+                {% if task and task.data_limite %}
+                    value="{{ task.data_limite|date:'Y-m-d' }}"
+                {% endif %}
+            >
 
             <label>
-                <input type="checkbox" name="concluida">
+                <input 
+                    type="checkbox" 
+                    name="concluida"
+                    {% if task and task.concluida %}checked{% endif %}
+                >
                 Concluída
             </label>
 

@@ -53,7 +53,6 @@
         padding-right: 30px;
     }
 
-    /* Botão novo */
     .btn-new-task {
         background-color: #52b788;
         color: #0d1b2a;
@@ -98,7 +97,6 @@
         cursor: pointer;
     }
 
-    /* ===== Imagens laterais ===== */
     .side-image {
         width: 180px;
         opacity: 0.9;
@@ -127,6 +125,7 @@
         <button class="btn-new-task">➕ Criar Nova Task</button>
     </a>
 </div>
+
 
 <!-- ===== Conteúdo Principal ===== -->
 <div class="content-area">
@@ -178,7 +177,13 @@
                                 {% endif %}
                             </td>
 
-                            <td>—</td>
+                            <td>
+                                <a href="{% url 'update_task' task.id %}" class="btn btn-warning btn-sm">✏ Editar</a>
+
+                                <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">
+                                    🗑 Excluir
+                                </a>
+                            </td>
                         </tr>
                         {% empty %}
                         <tr>
@@ -188,6 +193,7 @@
                         </tr>
                         {% endfor %}
                     </tbody>
+
                 </table>
 
             </div>

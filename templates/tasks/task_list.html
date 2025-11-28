@@ -76,7 +76,7 @@
         padding: 30px;
         display: flex;
         flex-direction: column;
-        align-items: center; /* 👍 Centraliza tudo */
+        align-items: center;
     }
 
     .card-dark {
@@ -186,8 +186,19 @@
                                 {% endif %}
                             </td>
 
-                            <!-- COLUNA AÇÕES (botão removido, mantendo estrutura) -->
-                            <td>—</td>
+                            <td>
+                                <!-- ✏️ Botão Editar -->
+                                <a href="{% url 'update_task' task.id %}" class="btn btn-warning btn-sm">
+                                    ✏️ Editar
+                                </a>
+
+                                <!-- 🗑️ Botão Excluir -->
+                                <a href="{% url 'delete_task' task.id %}" 
+                                   class="btn btn-danger btn-sm ms-1">
+                                    🗑️ Excluir
+                                </a>
+                            </td>
+
                         </tr>
                         {% empty %}
                         <tr>
@@ -197,6 +208,7 @@
                         </tr>
                         {% endfor %}
                     </tbody>
+
                 </table>
 
             </div>

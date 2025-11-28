@@ -15,7 +15,7 @@ class Task(models.Model):
         blank=True,
     )
     titulo = models.CharField("Título", max_length=200)
-    descricao = models.TextField("Descrição", blank=True)
+    descricao = models.TextField("Descrição", max_length=200, blank=True)
     concluida = models.BooleanField("Concluída", default=False)
     prioridade = models.CharField(
         "Prioridade",
