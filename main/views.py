@@ -89,3 +89,8 @@ def task_delete(request, pk):
         task.delete()
         return redirect('task_list')
     return render(request, 'tasks/task_confirm_delete.html', {'task': task})
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "home.html")
